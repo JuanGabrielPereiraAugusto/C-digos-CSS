@@ -1,0 +1,195 @@
+// ...existing code...
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Exemplos de Unidades CSS</title>
+  <style>
+    :root{
+      --bg:#0f0d14;
+      --panel:#171324;
+      --accent:#A259F7;
+      --muted:#bfb8dd;
+    }
+
+    body{
+      margin:0;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background: linear-gradient(180deg,var(--bg),#0a0710 80%);
+      color:var(--muted);
+      padding:20px;
+    }
+
+    header{ display:flex; gap:12px; align-items:center; margin-bottom:18px; }
+    h1{ color:#fff; font-size:18px; margin:0; }
+    p.lead{ margin:0; color:var(--muted); font-size:13px; }
+
+    .wrap{ display:grid; grid-template-columns:1fr 360px; gap:18px; align-items:start; }
+
+    .panel{
+      background:linear-gradient(180deg,var(--panel), rgba(23,19,36,0.95));
+      padding:14px;
+      border-radius:10px;
+      border:1px solid rgba(162,89,247,0.08);
+      box-shadow: 0 8px 28px rgba(8,5,18,0.6);
+    }
+
+    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .item{
+      background:#0f0d14;
+      border-radius:8px;
+      padding:10px;
+      text-align:center;
+      color:var(--muted);
+      border:1px solid rgba(162,89,247,0.06);
+    }
+    .label{ display:block; font-size:12px; color:#b9aef0; margin-bottom:6px; }
+
+    /* Boxes com unidades de medida: largura/altura definidas pela unidade */
+    .box{ background:linear-gradient(180deg, rgba(162,89,247,0.08), rgba(93,56,145,0.03)); margin:0 auto; display:flex; align-items:center; justify-content:center; color:#fff; border-radius:6px; }
+
+    /* unidades absolutas */
+    .u-px { width:120px; height:60px; }
+    .u-mm { width:48mm; height:24mm; }       /* mm */
+    .u-cm { width:4.8cm; height:2.4cm; }     /* cm */
+    .u-in { width:1.9in; height:0.9in; }     /* in */
+    .u-pt { width:90pt; height:40pt; }       /* pt (1pt = 1/72in) */
+    .u-pc { width:7pc; height:3pc; }         /* pc (1pc = 12pt) */
+
+    /* unidades relativas e viewport */
+    .u-em { width:12em; height:6em; font-size:1rem; }    /* em depende do font-size do elemento */
+    .u-rem { width:12rem; height:6rem; }                /* rem depende do root font-size */
+    .u-percent { width:80%; height:80px; }              /* % relativo ao elemento pai */
+    .u-vw { width:40vw; height:20vh; }                  /* vw / vh relativos à viewport */
+    .u-vmin { width:30vmin; height:15vmin; }
+    .u-vmax { width:30vmax; height:15vmax; }
+    .u-ch { width:18ch; height:4.5ch; }                 /* ch = largura do caractere '0' */
+    .u-ex { width:24ex; height:6ex; }                  /* ex = altura x minúscula */
+
+    /* textos em várias unidades (exemplos) */
+    .text-sample{ display:flex; gap:8px; flex-direction:column; margin-top:8px; }
+    .t-px { font-size:18px; }
+    .t-em { font-size:1.6em; }   /* relativo ao elemento pai */
+    .t-rem { font-size:1.4rem; } /* relativo ao root */
+
+    /* responsivo simples */
+    @media (max-width:900px){
+      .wrap{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Unidades de Medida CSS — Demo</h1>
+    <p class="lead">Veja exemplos visuais das unidades absolutas, relativas e de viewport.</p>
+  </header>
+
+  <div class="wrap">
+    <section class="panel">
+      <h2 style="color:#fff;margin-top:0;font-size:15px;">Boxes com diferentes unidades</h2>
+      <div class="grid" style="margin-top:12px;">
+        <div class="item">
+          <span class="label">px (pixels)</span>
+          <div class="box u-px">120px × 60px</div>
+        </div>
+
+        <div class="item">
+          <span class="label">mm (milímetros)</span>
+          <div class="box u-mm">48mm × 24mm</div>
+        </div>
+
+        <div class="item">
+          <span class="label">cm (centímetros)</span>
+          <div class="box u-cm">4.8cm × 2.4cm</div>
+        </div>
+
+        <div class="item">
+          <span class="label">in (polegadas)</span>
+          <div class="box u-in">1.9in × 0.9in</div>
+        </div>
+
+        <div class="item">
+          <span class="label">pt (pontos)</span>
+          <div class="box u-pt">90pt × 40pt</div>
+        </div>
+
+        <div class="item">
+          <span class="label">pc (picas)</span>
+          <div class="box u-pc">7pc × 3pc</div>
+        </div>
+
+        <div class="item">
+          <span class="label">em</span>
+          <div class="box u-em">12em × 6em</div>
+        </div>
+
+        <div class="item">
+          <span class="label">rem</span>
+          <div class="box u-rem">12rem × 6rem</div>
+        </div>
+
+        <div class="item">
+          <span class="label">% (porcentagem)</span>
+          <div style="background:transparent;">
+            <div style="width:100%; height:120px; background:rgba(162,89,247,0.04); border-radius:6px; display:flex;align-items:center;justify-content:center;">
+              <div style="width:80%; background:linear-gradient(90deg,#5D3891,#A259F7); height:80px; border-radius:6px; display:flex;align-items:center;justify-content:center; color:#fff;">
+                80% da largura do pai
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="label">vw / vh</span>
+          <div class="box u-vw">40vw × 20vh</div>
+        </div>
+
+        <div class="item">
+          <span class="label">vmin / vmax</span>
+          <div class="box u-vmin">30vmin × 15vmin</div>
+        </div>
+
+        <div class="item">
+          <span class="label">ch / ex</span>
+          <div class="box u-ch">18ch × 4.5ch</div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <h2 style="color:#fff;margin-top:0;font-size:15px;">Exemplos em texto</h2>
+
+      <div class="text-sample">
+        <div>
+          <span class="label">font-size em px</span>
+          <div class="t-px" style="color:#fff;">Texto: 18px</div>
+        </div>
+
+        <div>
+          <span class="label">font-size em em</span>
+          <div class="t-em" style="color:#fff;">Texto: 1.6em (relativo ao pai)</div>
+        </div>
+
+        <div>
+          <span class="label">font-size em rem</span>
+          <div class="t-rem" style="color:#fff;">Texto: 1.4rem (relativo ao root)</div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <span class="label">Observações rápidas</span>
+          <ul style="margin:0 0 0 18px;color:var(--muted);font-size:13px;">
+            <li>px é a unidade mais usada para web (fixa).</li>
+            <li>em e rem são recomendadas para acessibilidade e escalabilidade.</li>
+            <li>vw, vh úteis para layouts dependentes da viewport.</li>
+            <li>mm/cm/in/pt/pc são unidades físicas, dependem da impressora/monitor.</li>
+            <li>ch/ex medem larguras/alturas baseadas em caracteres da fonte.</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
+// ...existing code...

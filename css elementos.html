@@ -1,0 +1,82 @@
+// ...existing code...
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Tipos de Seletores CSS — Resumo</title>
+  <style>
+    /* Exemplos rápidos para cada tipo de seletor */
+    /* 1) Universal */
+    * { box-sizing: border-box; }
+
+    /* 2) Elemento (tag) */
+    p { color: #A259F7; }
+
+    /* 3) Classe */
+    .btn { background: #5D3891; color: #fff; padding: 6px 10px; }
+
+    /* 4) ID */
+    #header { font-weight: bold; }
+
+    /* 5) Atributo */
+    a[target="_blank"] { text-decoration: underline; }
+    input[type="text"] { width: 100%; }
+
+    /* 6) Agrupamento (vários seletores) */
+    h1, h2, h3 { margin: 0 0 0.5rem 0; }
+
+    /* 7) Descendente (qualquer nível) */
+    .card p { color: lightgray; }
+
+    /* 8) Filho imediato */
+    ul > li { list-style: none; }
+
+    /* 9) Irmão adjacente (próximo) */
+    h2 + p { margin-top: 0.25rem; }
+
+    /* 10) Irmão geral (qualquer irmão após) */
+    h2 ~ p { color: #bbb; }
+
+    /* 11) Pseudo-classes */
+    a:hover { opacity: 0.8; }
+    li:nth-child(odd) { background: rgba(162,89,247,0.05); }
+
+    /* 12) Pseudo-elementos */
+    p::first-line { font-variant: small-caps; }
+    .box::after { content: ""; display:block; clear:both; }
+
+    /* 13) Negação */
+    button:not(.disabled) { cursor: pointer; }
+
+    /* 14) Seletores por começo/fim/contém em atributos */
+    [class^="icon-"] { width: 1em; }
+    [src$=".png"] { border: 1px solid #333; }
+    [title*="dica"] { text-decoration: dotted underline; }
+  </style>
+</head>
+<body>
+  <h1 id="header">Resumo de Seletores CSS</h1>
+
+  <p>Exemplos de uso prático:</p>
+
+  <div class="card">
+    <h2>Card</h2>
+    <p>Parágrafo dentro de .card (seletor descendente).</p>
+  </div>
+
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+
+  <a href="#" target="_blank" title="uma dica">Link externo</a>
+
+  <div class="box">
+    <button class="btn">Botão</button>
+    <button class="btn disabled">Desabilitado</button>
+  </div>
+
+  <p>Mais: use combinações (ex.: nav ul > li a:hover), e prefira seletores específicos para evitar conflitos.</p>
+</body>
+</html>
+// ...existing code...

@@ -1,0 +1,379 @@
+// ...existing code...
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demonstração CSS — Cor, Imagem, Fundo, Bordas, Fontes, Textos, Sombras</title>
+  <style>
+    :root{
+      --pandora-purple: #A259F7;
+      --bg-dark: #18122B;
+      --panel: #231942;
+      --muted: #bfb8dd;
+    }
+
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,var(--bg-dark),#10091a 60%);
+      color: var(--muted);
+      padding:24px;
+      min-height:100vh;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:20px;
+      align-items:start;
+    }
+
+    .panel{
+      background: linear-gradient(180deg, var(--panel), rgba(37,20,52,0.9));
+      border-radius:12px;
+      padding:16px;
+      box-shadow: 0 8px 30px rgba(10,6,20,0.6);
+      border: 1px solid rgba(162,89,247,0.12);
+    }
+
+    h1{
+      margin:0 0 12px 0;
+      color:#ffffff; /* título branco */
+      font-size:20px;
+      text-shadow: 0 4px 18px rgba(102,50,153,0.25);
+    }
+
+    /* Exemplos visuais --------------------------------------------------- */
+
+    /* 1) Cor do texto */
+    .ex-cor { color: var(--pandora-purple); font-weight:700; }
+
+    /* 2) Fundo de elemento (cor e imagem) */
+    .ex-fundo{
+      background: url('foto.jpg') center/cover no-repeat, linear-gradient(135deg, rgba(162,89,247,0.15), rgba(93,56,145,0.15));
+      height:140px;
+      border-radius:10px;
+      display:flex;
+      align-items:flex-end;
+      padding:10px;
+      color:#fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* 3) Bordas */
+    .ex-borda{
+      border: 3px dashed var(--pandora-purple);
+      border-radius:12px;
+      padding:10px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* 4) Fontes e texto */
+    .ex-fontes{
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size:16px;
+      line-height:1.4;
+      color:#efe7ff;
+    }
+    .ex-fontes .small { font-size:13px; color:var(--muted); }
+
+    /* 5) Sombras (texto e caixa) */
+    .ex-sombra {
+      padding:12px;
+      border-radius:8px;
+      background: linear-gradient(90deg, rgba(162,89,247,0.06), rgba(93,56,145,0.04));
+      box-shadow: 0 10px 30px rgba(102,50,153,0.25), inset 0 -6px 12px rgba(0,0,0,0.15);
+    }
+    .ex-sombra .t {
+      color:#fff;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
+      font-weight:700;
+    }
+
+    /* 6) Imagem quadrada com object-fit (lado direito) */
+    .foto-quad{
+      width:220px;
+      height:220px;
+      border-radius:8px;
+      overflow:hidden;
+      border: 2px solid rgba(162,89,247,0.2);
+      box-shadow: 0 8px 24px rgba(10,6,20,0.6);
+      background:#120717;
+    }
+    .foto-quad img{
+      width:100%;
+      height:100%;
+      object-fit:cover; /* preserva proporção, corta se necessário */
+      display:block;
+    }
+
+    /* Pequenos rótulos */
+    .label{ font-size:12px; color:var(--muted); margin-bottom:6px; display:block; }
+    .grid-ex{
+      display:grid;
+      gap:12px;
+    }
+
+    /* Responsivo */
+    @media (max-width:860px){
+      .container{ grid-template-columns: 1fr; }
+      .foto-quad{ width:100%; height:260px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="panel">
+      <h1>Demonstração de propriedades CSS</h1>
+
+      <div class="grid-ex" style="margin-top:14px;">
+        <div>
+          <span class="label">Cor do texto</span>
+          <div class="ex-cor panel" style="padding:10px;">Texto em cor Pandora (variável CSS)</div>
+        </div>
+
+        <div>
+          <span class="label">Fundo de elemento (imagem + sobreposição)</span>
+          <div class="ex-fundo">Exemplo: fundo com imagem + gradiente</div>
+        </div>
+
+        <div>
+          <span class="label">Bordas</span>
+          <div class="ex-borda">
+            Borda dashed, espessura e radius aplicados.
+          </div>
+        </div>
+
+        <div>
+          <span class="label">Fontes e textos</span>
+          <div class="ex-fontes panel">
+            Texto em fonte serifada (Georgia). <span class="small">Ex.: tamanho, altura de linha e cor.</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="label">Sombras</span>
+          <div class="ex-sombra">
+            <div class="t">Sombra de texto e caixa aplicada</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px;">Box-shadow e text-shadow combinados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="panel" style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <h1 style="font-size:18px;margin-bottom:6px;">Imagem — quadrada</h1>
+      <span class="label">Exemplo usando object-fit para cortar</span>
+      <div class="foto-quad">
+        <!-- coloque a mesma foto que adicionou antes no arquivo da pasta como "foto.jpg" -->
+        <img src="foto.jpg" alt="Foto Juan (quadrada)">
+      </div>
+
+      <div style="width:100%;margin-top:8px;">
+        <span class="label">Notas rápidas</span>
+        <ul style="margin:0 0 0 16px;color:var(--muted);font-size:13px;">
+          <li>color: muda a cor do texto;</li>
+          <li>background / background-image: define cor e imagem de fundo;</li>
+          <li>border / border-radius: controla bordas e cantos arredondados;</li>
+          <li>font-family / font-size: controla fontes;</li>
+          <li>text-shadow / box-shadow: adiciona sombras;</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
+// ...existing code...
+```// filepath: untitled:Untitled-1
+// ...existing code...
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demonstração CSS — Cor, Imagem, Fundo, Bordas, Fontes, Textos, Sombras</title>
+  <style>
+    :root{
+      --pandora-purple: #A259F7;
+      --bg-dark: #18122B;
+      --panel: #231942;
+      --muted: #bfb8dd;
+    }
+
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,var(--bg-dark),#10091a 60%);
+      color: var(--muted);
+      padding:24px;
+      min-height:100vh;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:20px;
+      align-items:start;
+    }
+
+    .panel{
+      background: linear-gradient(180deg, var(--panel), rgba(37,20,52,0.9));
+      border-radius:12px;
+      padding:16px;
+      box-shadow: 0 8px 30px rgba(10,6,20,0.6);
+      border: 1px solid rgba(162,89,247,0.12);
+    }
+
+    h1{
+      margin:0 0 12px 0;
+      color:#ffffff; /* título branco */
+      font-size:20px;
+      text-shadow: 0 4px 18px rgba(102,50,153,0.25);
+    }
+
+    /* Exemplos visuais --------------------------------------------------- */
+
+    /* 1) Cor do texto */
+    .ex-cor { color: var(--pandora-purple); font-weight:700; }
+
+    /* 2) Fundo de elemento (cor e imagem) */
+    .ex-fundo{
+      background: url('foto.jpg') center/cover no-repeat, linear-gradient(135deg, rgba(162,89,247,0.15), rgba(93,56,145,0.15));
+      height:140px;
+      border-radius:10px;
+      display:flex;
+      align-items:flex-end;
+      padding:10px;
+      color:#fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* 3) Bordas */
+    .ex-borda{
+      border: 3px dashed var(--pandora-purple);
+      border-radius:12px;
+      padding:10px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* 4) Fontes e texto */
+    .ex-fontes{
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size:16px;
+      line-height:1.4;
+      color:#efe7ff;
+    }
+    .ex-fontes .small { font-size:13px; color:var(--muted); }
+
+    /* 5) Sombras (texto e caixa) */
+    .ex-sombra {
+      padding:12px;
+      border-radius:8px;
+      background: linear-gradient(90deg, rgba(162,89,247,0.06), rgba(93,56,145,0.04));
+      box-shadow: 0 10px 30px rgba(102,50,153,0.25), inset 0 -6px 12px rgba(0,0,0,0.15);
+    }
+    .ex-sombra .t {
+      color:#fff;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
+      font-weight:700;
+    }
+
+    /* 6) Imagem quadrada com object-fit (lado direito) */
+    .foto-quad{
+      width:220px;
+      height:220px;
+      border-radius:8px;
+      overflow:hidden;
+      border: 2px solid rgba(162,89,247,0.2);
+      box-shadow: 0 8px 24px rgba(10,6,20,0.6);
+      background:#120717;
+    }
+    .foto-quad img{
+      width:100%;
+      height:100%;
+      object-fit:cover; /* preserva proporção, corta se necessário */
+      display:block;
+    }
+
+    /* Pequenos rótulos */
+    .label{ font-size:12px; color:var(--muted); margin-bottom:6px; display:block; }
+    .grid-ex{
+      display:grid;
+      gap:12px;
+    }
+
+    /* Responsivo */
+    @media (max-width:860px){
+      .container{ grid-template-columns: 1fr; }
+      .foto-quad{ width:100%; height:260px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="panel">
+      <h1>Demonstração de propriedades CSS</h1>
+
+      <div class="grid-ex" style="margin-top:14px;">
+        <div>
+          <span class="label">Cor do texto</span>
+          <div class="ex-cor panel" style="padding:10px;">Texto em cor Pandora (variável CSS)</div>
+        </div>
+
+        <div>
+          <span class="label">Fundo de elemento (imagem + sobreposição)</span>
+          <div class="ex-fundo">Exemplo: fundo com imagem + gradiente</div>
+        </div>
+
+        <div>
+          <span class="label">Bordas</span>
+          <div class="ex-borda">
+            Borda dashed, espessura e radius aplicados.
+          </div>
+        </div>
+
+        <div>
+          <span class="label">Fontes e textos</span>
+          <div class="ex-fontes panel">
+            Texto em fonte serifada (Georgia). <span class="small">Ex.: tamanho, altura de linha e cor.</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="label">Sombras</span>
+          <div class="ex-sombra">
+            <div class="t">Sombra de texto e caixa aplicada</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px;">Box-shadow e text-shadow combinados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="panel" style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <h1 style="font-size:18px;margin-bottom:6px;">Imagem — quadrada</h1>
+      <span class="label">Exemplo usando object-fit para cortar</span>
+      <div class="foto-quad">
+        <!-- coloque a mesma foto que adicionou antes no arquivo da pasta como "foto.jpg" -->
+        <img src="foto.jpg" alt="Foto Juan (quadrada)">
+      </div>
+
+      <div style="width:100%;margin-top:8px;">
+        <span class="label">Notas rápidas</span>
+        <ul style="margin:0 0 0 16px;color:var(--muted);font-size:13px;">
+          <li>color: muda a cor do texto;</li>
+          <li>background / background-image: define cor e imagem de fundo;</li>
+          <li>border / border-radius: controla bordas e cantos arredondados;</li>
+          <li>font-family / font-size: controla fontes;</li>
+          <li>text-shadow / box-shadow: adiciona sombras;</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
+// ...existing code...
