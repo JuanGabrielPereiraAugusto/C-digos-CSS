@@ -1,0 +1,183 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>seletores</title>
+    <style>
+      /* seletor de tipo */
+      h1 {
+        background: darkblue;
+        color: white;
+      }
+      /* seletor de ID */
+      #seletor_tipo {
+        background: green;
+        color: white;
+      }
+      /* seletor de classe */
+      .seletores {
+        background: lightblue;
+        color: black;
+      }
+      /* seletor geral */
+      * {
+        font-weight: bold;
+      }
+      /* agrupamento de seletores */
+      h3,
+      p {
+        color: red;
+      }
+      /* combinador descendente: seleciona todos os p dentro de #descendente */
+      #descendente p {
+        background: lightyellow;
+        border-left: 3px solid orange;
+        padding-left: 10px;
+      }
+      /* combinador filho: seleciona apenas os p que são filhos diretos de div.filho */
+      div.filho > p {
+        background: lightcyan;
+        border-left: 3px solid blue;
+        padding-left: 10px;
+      }
+      /* combinador adjacente: seleciona p imediatamente após h3 */
+      h3 + p.irmaoadjacente {
+        background: lightpink;
+        border-left: 3px solid purple;
+        padding-left: 10px;
+      }
+      /* combinador irmão geral: seleciona todos p que são irmãos de h4 */
+      h4 ~ p {
+        background: lightgreen;
+        border-left: 3px solid green;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Seletores CSS</h1>
+    <p>No CSS possuímos diversos seletores para estilizar elementos HTML</p>
+    <h2>Seletores de tipo</h2>
+    <div>
+      <ul>
+        <li id="seletor_tipo">
+          seletor por tipo: seleciona elementos com base no seu tipo (ex: p, h1,
+          div)
+        </li>
+        <li class="seletores">
+          seletor de classe: seleciona elementos com base na classe atribuída a
+          eles (ex: .classe)
+        </li>
+        <li class="seletores">
+          seletor de ID: seleciona um elemento específico com base no seu ID
+          (ex: #id)
+        </li>
+        <li>
+          seletor de atributo: seleciona elementos com base em um atributo
+          específico (ex: [type="text"])
+        </li>
+        <li>
+          seletor de pseudo-classe: seleciona elementos com base em seu estado
+          ou posição (ex: :hover, :first-child)
+        </li>
+        <li>
+          seletor de pseudo-elemento: seleciona uma parte específica de um
+          elemento (ex: ::before, ::after)
+        </li>
+        <li>seletor universal: seleciona todos os elementos (ex: *)</li>
+        <li>
+          seletor de descendente: seleciona elementos que são descendentes de um
+          elemento específico (ex: div p)
+        </li>
+        <li>
+          seletor de filho: seleciona elementos que são filhos diretos de um
+          elemento específico (ex: div > p)
+        </li>
+        <li>
+          seletor de adjacente: seleciona um elemento que é imediatamente
+          adjacente a outro elemento (ex: h1 + p)
+        </li>
+        <li>
+          seletor de irmão geral: seleciona todos os elementos que são irmãos de
+          um elemento específico (ex: h1 ~ p)
+        </li>
+        <li>
+          seletor de grupo: seleciona vários elementos de uma vez (ex: h1, h2,
+          p)
+        </li>
+        <li></li>
+      </ul>
+    </div>
+    <h3>exemplo de agrupamento</h3>
+    <p>exemplo,exemplo,exemplo,exemplo</p>
+    <ul>
+      lista 1
+      <li>sublista 1</li>
+      <li>sublista 2</li>
+    </ul>
+    <ul>
+      lista 2
+      <li>sublista 1</li>
+      <li>sublista 2</li>
+    </ul>
+    <ul>
+      lista 3
+      <li>sublista 1</li>
+      <li>sublista 2</li>
+    </ul>
+
+    <h2>Exemplos de Combinadores</h2>
+
+    <h3>Combinador Descendente (espaço)</h3>
+    <p>
+      Seleciona TODOS os elementos de um tipo dentro de um elemento pai, em
+      qualquer nível de profundidade.
+    </p>
+    <div
+      id="descendente"
+      style="border: 2px solid orange; padding: 10px; margin: 10px 0"
+    >
+      <p>Parágrafo filho direto - será estilizado</p>
+      <div>
+        <p>Parágrafo neto - também será estilizado (é descendente)</p>
+        <div>
+          <p>Parágrafo bisneto - também será estilizado</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Combinador Filho (>)</h3>
+    <p>
+      Seleciona APENAS os elementos diretos (filhos imediatos) de um elemento.
+    </p>
+    <div
+      class="filho"
+      style="border: 2px solid blue; padding: 10px; margin: 10px 0"
+    >
+      <p>Parágrafo filho direto - será estilizado</p>
+      <div>
+        <p>Parágrafo neto - NÃO será estilizado (não é filho direto)</p>
+      </div>
+    </div>
+
+    <h3>Combinador Adjacente (+)</h3>
+    <p>
+      Seleciona um elemento que vem IMEDIATAMENTE depois de outro (irmão
+      adjacente).
+    </p>
+    <h4>Título</h4>
+    <p class="irmaoadjacente">Primeiro parágrafo após h4 - será estilizado</p>
+    <p>Segundo parágrafo após h4 - NÃO será estilizado</p>
+
+    <h3>Combinador Irmão Geral (~)</h3>
+    <p>
+      Seleciona TODOS os elementos que vêm depois de um elemento específico no
+      mesmo nível.
+    </p>
+    <h4>Outro Título</h4>
+    <p>Primeiro parágrafo após h4 - será estilizado</p>
+    <span>Algum conteúdo</span>
+    <p>Segundo parágrafo após h4 - será estilizado</p>
+    <p>Terceiro parágrafo após h4 - será estilizado</p>
+  </body>
+</html>
