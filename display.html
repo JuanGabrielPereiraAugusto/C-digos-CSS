@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia de display no CSS</title>
+    <style>
+      :root {
+        --fundo: #f7f7f0;
+        --cartao: #ffffff;
+        --texto: #1f2937;
+        --destaque: #0f766e;
+        --borda: #d1d5db;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #fffef7 0%, var(--fundo) 100%);
+        color: var(--texto);
+        line-height: 1.5;
+        padding: 24px;
+      }
+
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      h1,
+      h2 {
+        margin-top: 0;
+      }
+
+      .explicacao,
+      .bloco-demo {
+        background: var(--cartao);
+        border: 1px solid var(--borda);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      .explicacao ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .explicacao li {
+        margin-bottom: 8px;
+      }
+
+      .bloco-demo h3 {
+        margin: 0 0 8px;
+        color: var(--destaque);
+      }
+
+      .area {
+        border: 1px dashed #9ca3af;
+        border-radius: 8px;
+        padding: 12px;
+        background: #f9fafb;
+      }
+
+      .caixa {
+        background: #fde68a;
+        border: 1px solid #f59e0b;
+        padding: 8px;
+      }
+
+      .item {
+        background: #bfdbfe;
+        border: 1px solid #3b82f6;
+        padding: 6px;
+      }
+
+      .display-block {
+        display: block;
+      }
+
+      .display-inline {
+        display: inline;
+      }
+
+      .display-inline-block {
+        display: inline-block;
+        width: 140px;
+      }
+
+      .display-none {
+        display: none;
+      }
+
+      .display-flex {
+        display: flex;
+        gap: 8px;
+      }
+
+      .display-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(80px, 1fr));
+        gap: 8px;
+      }
+
+      .display-inline-flex {
+        display: inline-flex;
+        gap: 8px;
+        border: 1px solid #f59e0b;
+        background: #ffedd5;
+        padding: 8px;
+      }
+
+      .display-inline-grid {
+        display: inline-grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        border: 1px solid #a78bfa;
+        background: #ede9fe;
+        padding: 8px;
+      }
+
+      .display-list-item {
+        display: list-item;
+        margin-left: 20px;
+      }
+
+      .display-table {
+        display: table;
+        border-collapse: collapse;
+      }
+
+      .display-table-row {
+        display: table-row;
+      }
+
+      .display-table-cell {
+        display: table-cell;
+        border: 1px solid #9ca3af;
+        padding: 8px;
+      }
+
+      .display-table-caption {
+        display: table-caption;
+        caption-side: top;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .display-contents {
+        display: contents;
+      }
+
+      .pai-inline {
+        display: inline;
+      }
+
+      .display-inherit {
+        display: inherit;
+      }
+
+      .display-initial {
+        display: initial;
+      }
+
+      .display-unset {
+        display: unset;
+      }
+
+      .display-revert {
+        display: revert;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Propriedade display</h1>
+      <p>
+        Use este arquivo como cola de estudo. Cada bloco mostra uma explicacao
+        curta e uma demonstracao visual.
+      </p>
+
+      <section class="explicacao">
+        <h2>Resumo rapido</h2>
+        <ul>
+          <li>
+            <strong>block</strong>: quebra linha e ocupa a largura disponivel.
+          </li>
+          <li>
+            <strong>inline</strong>: fica na mesma linha e ignora width/height.
+          </li>
+          <li>
+            <strong>inline-block</strong>: fica na linha e aceita width/height.
+          </li>
+          <li>
+            <strong>none</strong>: esconde o elemento e remove seu espaco.
+          </li>
+          <li><strong>flex</strong>: organiza filhos em eixo principal.</li>
+          <li><strong>grid</strong>: organiza filhos em linhas e colunas.</li>
+          <li>
+            <strong>inline-flex</strong>: flex que se comporta como inline.
+          </li>
+          <li>
+            <strong>inline-grid</strong>: grid que se comporta como inline.
+          </li>
+          <li><strong>list-item</strong>: mostra marcador de lista.</li>
+          <li>
+            <strong>table / row / cell / caption</strong>: simula estrutura de
+            tabela.
+          </li>
+          <li>
+            <strong>contents</strong>: remove a caixa do pai e mantem os filhos.
+          </li>
+          <li><strong>inherit</strong>: herda o valor do pai.</li>
+          <li>
+            <strong>initial</strong>: volta ao valor inicial da propriedade.
+          </li>
+          <li>
+            <strong>unset</strong>: herda quando possivel, senao usa initial.
+          </li>
+          <li>
+            <strong>revert</strong>: volta ao estilo padrao do
+            navegador/usuario.
+          </li>
+        </ul>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: block</h3>
+        <div class="area">
+          <span class="caixa display-block">A</span>
+          <span class="caixa display-block">B</span>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: inline</h3>
+        <div class="area">
+          <span class="caixa display-inline">A</span>
+          <span class="caixa display-inline">B</span>
+          <span class="caixa display-inline">C</span>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: inline-block</h3>
+        <div class="area">
+          <span class="caixa display-inline-block">A (140px)</span>
+          <span class="caixa display-inline-block">B (140px)</span>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: none</h3>
+        <div class="area">
+          <span class="caixa">Visivel</span>
+          <span class="caixa display-none">Nao aparece</span>
+          <span class="caixa">Visivel</span>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: flex</h3>
+        <div class="area display-flex">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: grid</h3>
+        <div class="area display-grid">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: inline-flex</h3>
+        <div class="area">
+          Texto antes
+          <div class="display-inline-flex">
+            <div class="item">1</div>
+            <div class="item">2</div>
+          </div>
+          texto depois
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: inline-grid</h3>
+        <div class="area">
+          Texto antes
+          <div class="display-inline-grid">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+          </div>
+          texto depois
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: list-item</h3>
+        <div class="area">
+          <div class="caixa display-list-item">Item com marcador</div>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: table / row / cell / caption</h3>
+        <div class="area">
+          <div class="display-table">
+            <div class="display-table-caption">Legenda da tabela</div>
+            <div class="display-table-row">
+              <div class="display-table-cell">Linha 1, Coluna 1</div>
+              <div class="display-table-cell">Linha 1, Coluna 2</div>
+            </div>
+            <div class="display-table-row">
+              <div class="display-table-cell">Linha 2, Coluna 1</div>
+              <div class="display-table-cell">Linha 2, Coluna 2</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: contents</h3>
+        <div class="area">
+          <div class="display-contents">
+            <span class="item">Filho A</span>
+            <span class="item">Filho B</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: inherit</h3>
+        <div class="area pai-inline">
+          <span class="caixa display-inherit">Herdei inline do pai</span>
+          <span class="caixa display-inherit">Tambem inline</span>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: initial</h3>
+        <div class="area">
+          <span class="caixa display-initial">Volta ao valor inicial</span>
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: unset</h3>
+        <div class="area">
+          <span class="caixa display-unset"
+            >Comportamento depende da heranca</span
+          >
+        </div>
+      </section>
+
+      <section class="bloco-demo">
+        <h3>display: revert</h3>
+        <div class="area">
+          <span class="caixa display-revert"
+            >Volta para o padrao do navegador</span
+          >
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
