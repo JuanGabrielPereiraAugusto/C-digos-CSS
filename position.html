@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia de position no CSS</title>
+    <style>
+      :root {
+        --fundo-1: #f4efe5;
+        --fundo-2: #e5edf4;
+        --cartao: #fffcf8;
+        --texto: #1f2937;
+        --muted: #4b5563;
+        --borda: #d6d3d1;
+        --destaque: #0f766e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        color: var(--texto);
+        background: radial-gradient(circle at 20% 0%, #fff9ec 0%, var(--fundo-1) 35%, var(--fundo-2) 100%);
+        line-height: 1.5;
+      }
+
+      .wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 24px 20px 96px;
+      }
+
+      .hero {
+        background: linear-gradient(120deg, #fff 0%, #fef3c7 45%, #dbeafe 100%);
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 16px;
+        animation: surgir 500ms ease-out;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .resumo {
+        background: var(--cartao);
+        border: 1px solid var(--borda);
+        border-radius: 14px;
+        padding: 14px 16px;
+        margin-bottom: 18px;
+      }
+
+      .resumo h2,
+      .cards h2 {
+        margin-top: 0;
+      }
+
+      .resumo ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .resumo li {
+        margin-bottom: 6px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        background: var(--cartao);
+        border: 1px solid var(--borda);
+        border-radius: 14px;
+        padding: 14px;
+        box-shadow: 0 4px 15px rgba(15, 23, 42, 0.07);
+        animation: surgir 450ms ease-out;
+      }
+
+      .card h3 {
+        margin: 0 0 6px;
+        color: var(--destaque);
+      }
+
+      .card p {
+        margin: 0 0 10px;
+        color: var(--muted);
+      }
+
+      .stage {
+        border: 1px dashed #9ca3af;
+        border-radius: 10px;
+        background: #f8fafc;
+        min-height: 94px;
+        padding: 10px;
+      }
+
+      .box {
+        border: 1px solid #9ca3af;
+        border-radius: 8px;
+        padding: 8px;
+        background: #e2e8f0;
+        margin-bottom: 8px;
+      }
+
+      .static-demo .box {
+        background: #bfdbfe;
+      }
+
+      .relative-demo .alvo {
+        position: relative;
+        top: 8px;
+        left: 16px;
+        background: #bbf7d0;
+      }
+
+      .absolute-parent {
+        position: relative;
+        height: 110px;
+        background: #eef2ff;
+      }
+
+      .absolute-demo .fixo {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        width: 120px;
+        background: #fecaca;
+      }
+
+      .sticky-wrap {
+        max-height: 160px;
+        overflow-y: auto;
+        padding: 0;
+      }
+
+      .sticky-demo .topo {
+        position: sticky;
+        top: 0;
+        margin: 0;
+        border-radius: 10px 10px 0 0;
+        background: #fde68a;
+        border-bottom: 1px solid #f59e0b;
+        z-index: 1;
+      }
+
+      .sticky-demo .texto {
+        padding: 10px;
+      }
+
+      .codigo {
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: #0f172a;
+        background: #f1f5f9;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 8px;
+      }
+
+      .fixed-tag {
+        position: fixed;
+        right: 14px;
+        bottom: 14px;
+        background: #134e4a;
+        color: #fff;
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        box-shadow: 0 8px 20px rgba(6, 78, 59, 0.28);
+      }
+
+      .dica {
+        margin-top: 18px;
+        padding: 14px;
+        border-left: 5px solid #0ea5e9;
+        border-radius: 10px;
+        background: #eff6ff;
+      }
+
+      @keyframes surgir {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 700px) {
+        .fixed-tag {
+          bottom: 10px;
+          right: 10px;
+          font-size: 0.72rem;
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="hero">
+        <h1>Position no CSS: guia visual</h1>
+        <p>
+          Esta pagina foi montada para estudo rapido: entenda o que cada valor faz,
+          veja o comportamento na pratica e compare os cenarios lado a lado.
+        </p>
+      </header>
+
+      <section class="resumo">
+        <h2>Mapa mental</h2>
+        <ul>
+          <li><strong>static</strong>: padrao, segue o fluxo normal.</li>
+          <li><strong>relative</strong>: move o elemento sem tirar seu espaco original.</li>
+          <li><strong>absolute</strong>: sai do fluxo e usa o ancestral posicionado como referencia.</li>
+          <li><strong>fixed</strong>: prende na janela, continua visivel na rolagem.</li>
+          <li><strong>sticky</strong>: rola como normal e fixa quando encosta no topo definido.</li>
+        </ul>
+      </section>
+
+      <section class="cards" aria-label="demonstracoes de position">
+        <article class="card static-demo">
+          <h3>position: static</h3>
+          <p>Comportamento padrao. Nao aceita deslocamento com top/right/bottom/left.</p>
+          <div class="stage">
+            <div class="box">Caixa 1 (fluxo normal)</div>
+            <div class="box">Caixa 2 (vem logo abaixo)</div>
+          </div>
+          <p class="codigo">position: static;</p>
+        </article>
+
+        <article class="card relative-demo">
+          <h3>position: relative</h3>
+          <p>Move visualmente o elemento, mas o espaco original continua reservado.</p>
+          <div class="stage">
+            <div class="box">Caixa normal</div>
+            <div class="box alvo">Caixa deslocada (+top e +left)</div>
+          </div>
+          <p class="codigo">position: relative; top: 8px; left: 16px;</p>
+        </article>
+
+        <article class="card absolute-demo">
+          <h3>position: absolute</h3>
+          <p>Ideal para sobrepor elementos dentro de um bloco com position: relative.</p>
+          <div class="stage absolute-parent">
+            <div class="box">Pai com position: relative</div>
+            <div class="box fixo">Filho absolute no canto</div>
+          </div>
+          <p class="codigo">pai: position: relative; filho: position: absolute; right: 8px; bottom: 8px;</p>
+        </article>
+
+        <article class="card">
+          <h3>position: fixed</h3>
+          <p>Observe o selo no canto da tela. Ele fica fixo mesmo ao rolar a pagina.</p>
+          <div class="stage">
+            <div class="box">Use para botoes de ajuda, chat e atalhos.</div>
+          </div>
+          <p class="codigo">position: fixed; right: 14px; bottom: 14px;</p>
+        </article>
+
+        <article class="card sticky-demo">
+          <h3>position: sticky</h3>
+          <p>Role a area abaixo: o topo amarelo "gruda" quando chega no limite superior.</p>
+          <div class="stage sticky-wrap">
+            <div class="box topo">Cabecalho sticky (top: 0)</div>
+            <div class="texto">
+              <p>
+                Conteudo de estudo 1: sticky e util para titulos de tabela, menus de secao
+                e filtros fixos durante a leitura.
+              </p>
+              <p>
+                Conteudo de estudo 2: ele precisa de espaco para rolar e de um valor de top.
+                Se algum ancestral tiver overflow inadequado, pode nao funcionar como esperado.
+              </p>
+              <p>
+                Conteudo de estudo 3: combine sticky com fundo solido para evitar sobreposicao
+                visual confusa.
+              </p>
+            </div>
+          </div>
+          <p class="codigo">position: sticky; top: 0;</p>
+        </article>
+      </section>
+
+      <aside class="dica">
+        <strong>Dica de prova/entrevista:</strong> se voce esquecer quando usar absolute,
+        lembre desta frase: "absolute precisa de um pai com relative para ter onde se apoiar".
+      </aside>
+    </div>
+
+    <div class="fixed-tag">Estou com position: fixed</div>
+  </body>
+</html>
