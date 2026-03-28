@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox para estudo</title>
+    <style>
+      :root {
+        --bg: #f4f7f8;
+        --card: #ffffff;
+        --text: #1f2937;
+        --accent: #0d9488;
+        --accent-soft: #ccfbf1;
+        --border: #d1d5db;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #e6fffa 0%, var(--bg) 40%);
+        color: var(--text);
+      }
+
+      .page {
+        width: min(1000px, 92%);
+        margin: 32px auto;
+      }
+
+      h1 {
+        margin-bottom: 8px;
+      }
+
+      .intro {
+        margin-top: 0;
+        margin-bottom: 24px;
+      }
+
+      .study-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .card {
+        background-color: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 6px 20px rgb(15 23 42 / 7%);
+      }
+
+      .card h2 {
+        font-size: 1.1rem;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      .desc {
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: #475569;
+      }
+
+      .container {
+        display: flex;
+        gap: 10px;
+        min-height: 120px;
+        padding: 12px;
+        border: 2px dashed var(--accent);
+        border-radius: 10px;
+        background-color: var(--accent-soft);
+      }
+
+      .container + .container {
+        margin-top: 12px;
+      }
+
+      .card .container {
+        margin-bottom: 4px;
+      }
+
+      .item {
+        width: 70px;
+        height: 70px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background-color: #ffffff;
+        border: 1px solid #14b8a6;
+        font-weight: 600;
+      }
+
+      /* 1) Direcao do eixo principal */
+      #row {
+        flex-direction: row;
+      }
+
+      #column {
+        flex-direction: column;
+      }
+
+      #row-reverse {
+        flex-direction: row-reverse;
+      }
+
+      #column-reverse {
+        flex-direction: column-reverse;
+      }
+
+      /* 2) Distribuicao no eixo principal */
+      #space-between {
+        justify-content: space-between;
+      }
+
+      #center {
+        justify-content: center;
+      }
+
+      #space-around {
+        justify-content: space-around;
+      }
+
+      #flex-end-main {
+        justify-content: flex-end;
+      }
+
+      /* 3) Alinhamento no eixo cruzado */
+      #align-start {
+        height: 170px;
+        align-items: flex-start;
+      }
+
+      #align-center {
+        height: 170px;
+        align-items: center;
+      }
+
+      #align-end {
+        height: 170px;
+        align-items: flex-end;
+      }
+
+      /* 4) Quebra de linha e tamanho flexivel */
+      #wrap {
+        height: 220px;
+        flex-wrap: wrap;
+        align-content: space-between;
+      }
+
+      #wrap .item {
+        width: 120px;
+        height: 50px;
+      }
+
+      #grow .item {
+        width: auto;
+        flex-basis: 120px;
+      }
+
+      #grow .item:nth-child(2) {
+        flex-grow: 2;
+      }
+
+      #grow .item:nth-child(1),
+      #grow .item:nth-child(3) {
+        flex-grow: 1;
+      }
+
+      .hint {
+        margin-top: 10px;
+        margin-bottom: 14px;
+        font-size: 0.9rem;
+        color: #334155;
+      }
+
+      .card .hint:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 640px) {
+        .item {
+          width: 60px;
+          height: 60px;
+          font-size: 0.9rem;
+        }
+
+        #wrap .item {
+          width: 100px;
+          height: 48px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <h1>Flexbox para estudo</h1>
+      <p class="intro">
+        Cada bloco abaixo isola uma ideia do Flexbox. Troque os valores no CSS e
+        veja como o layout responde.
+      </p>
+
+      <section class="study-grid">
+        <article class="card">
+          <h2>1) flex-direction</h2>
+          <p class="desc">Controla a direcao do eixo principal.</p>
+
+          <div class="container" id="row">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+          </div>
+          <p class="hint">row</p>
+
+          <div class="container" id="column">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+          </div>
+          <p class="hint">column</p>
+
+          <div class="container" id="row-reverse">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+          </div>
+          <p class="hint">row-reverse</p>
+
+          <div class="container" id="column-reverse">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+          </div>
+          <p class="hint">column-reverse</p>
+        </article>
+
+        <article class="card">
+          <h2>2) justify-content</h2>
+          <p class="desc">Distribui os itens no eixo principal.</p>
+
+          <div class="container" id="space-between">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+          </div>
+          <p class="hint">space-between</p>
+
+          <div class="container" id="center">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+          </div>
+          <p class="hint">center</p>
+
+          <div class="container" id="space-around">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+          </div>
+          <p class="hint">space-around</p>
+
+          <div class="container" id="flex-end-main">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+          </div>
+          <p class="hint">flex-end</p>
+        </article>
+
+        <article class="card">
+          <h2>3) align-items</h2>
+          <p class="desc">Alinha os itens no eixo cruzado.</p>
+
+          <div class="container" id="align-start">
+            <div class="item">X</div>
+            <div class="item">Y</div>
+            <div class="item">Z</div>
+          </div>
+          <p class="hint">flex-start</p>
+
+          <div class="container" id="align-center">
+            <div class="item">X</div>
+            <div class="item">Y</div>
+            <div class="item">Z</div>
+          </div>
+          <p class="hint">center</p>
+
+          <div class="container" id="align-end">
+            <div class="item">X</div>
+            <div class="item">Y</div>
+            <div class="item">Z</div>
+          </div>
+          <p class="hint">flex-end</p>
+        </article>
+
+        <article class="card">
+          <h2>4) flex-wrap + flex-grow</h2>
+          <p class="desc">Veja quebra de linha e crescimento proporcional.</p>
+
+          <div class="container" id="wrap">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+          </div>
+          <p class="hint">flex-wrap: wrap + align-content: space-between</p>
+
+          <div class="container" id="grow">
+            <div class="item">grow 1</div>
+            <div class="item">grow 2</div>
+            <div class="item">grow 1</div>
+          </div>
+          <p class="hint">O item do meio cresce o dobro.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
