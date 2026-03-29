@@ -1,0 +1,49 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  transition: 1s;
+}
+.box:hover {
+  background-color: red;
+  transform: translate(-50%, -50%) rotate(360deg);
+}
+.width {
+  width: 100px;
+  height: 50px;
+  background-color: aquamarine;
+  transition: 2s;
+}
+.width:hover {
+  width: 200px;
+}
+.width {
+  transition-timing-function: ease;
+}
+.animation {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+  animation-name: example;
+  animation-duration: 4s;
+  bottom: 50px;
+  position: absolute;
+  animation-name: teste;
+  animation-duration: 2s;
+}
+
+@keyframes teste {
+  from {
+    background-color: aquamarine;
+  }
+  to {
+    background-color: red;
+  }
+}
